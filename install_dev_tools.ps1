@@ -1,38 +1,54 @@
-# Define the GitHub repository and script URL
-$repoUrl = "https://raw.githubusercontent.com/Raptacon/developer-tools/main/install_dev_tools.ps1"
-$tempScriptPath = "$HOME\Downloads\install_dev_tools.ps1"
+# Define the GitHub repository and local path
+$repoUrl = "https://github.com/Raptacon/developer-tools.git"
+$localRepoPath = "$HOME\Downloads\developer-tools"
+$scriptPath = "$localRepoPath\install_dev_tools.ps1"
 
-# Function to download the latest script from GitHub
-function Update-ScriptFromGitHub {
+# Function to clone the repository if it doesn't exist
+function Clone-RepoIfNotExists {
     param (
         [string]$repoUrl,
-        [string]$tempScriptPath
+        [string]$localRepoPath
     )
 
-    try {
-        # Download the latest script
-        Invoke-WebRequest -Uri $repoUrl -OutFile $tempScriptPath -ErrorAction Stop
-        Write-Output "Script downloaded successfully to $tempScriptPath."
+    if (-not (Test-Path $localRepoPath)) {
+        git clone $repoUrl $localRepoPath
+        Write-Output "Repository cloned to $localRepoPath."
+    } else {
+        Write-Output "Repository already exists at $localRepoPath."
+    }
+}
 
-        # Replace the current script with the latest version
-        Copy-Item -Path $tempScriptPath -Destination $MyInvocation.MyCommand.Path -Force
-        Write-Output "Script updated successfully."
+# Function to check for updates in the repository
+function Check-ForUpdates {
+    param (
+        [string]$localRepoPath
+    )
 
+    Push-Location $localRepoPath
+    git fetch origin
+    $localHash = git rev-parse HEAD
+    $remoteHash = git rev-parse origin/main
+    Pop-Location
+
+    if ($localHash -ne $remoteHash) {
+        Write-Error "Updates are available. Please update the repository and re-run the script."
         return $true
-    } catch {
-        Write-Error "Failed to download the script: $_"
+    } else {
+        Write-Output "No updates found. Proceeding with the script."
         return $false
     }
 }
 
-# Update the script to the latest version from GitHub
-if (Update-ScriptFromGitHub -repoUrl $repoUrl -tempScriptPath $tempScriptPath) {
-    # Re-run the script if update was successful
-    & $MyInvocation.MyCommand.Path
-} else {
-    Write-Error "Script update failed. Exiting."
+# Clone the repository if it doesn't exist
+Clone-RepoIfNotExists -repoUrl $repoUrl -localRepoPath $localRepoPath
+
+# Check for updates
+if (Check-ForUpdates -localRepoPath $localRepoPath) {
     exit 1
 }
+
+
+
 # Ensure Chocolatey is installed
 if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
     Set-ExecutionPolicy Bypass -Scope Process -Force;
