@@ -45,13 +45,13 @@ Install-ChocolateyPackage -packageName "vscode"
 Install-ChocolateyPackage -packageName "git"
 Install-ChocolateyPackage -packageName "git.install"
 Install-ChocolateyPackage -packageName "Git-Credential-Manager-for-Windows"
-
-# Install additional software
 Install-ChocolateyPackage -packageName "github-desktop"
 Install-ChocolateyPackage -packageName "python"
 Install-ChocolateyPackage -packageName "pipenv"
 Install-ChocolateyPackage -packageName "firefox"
 Install-ChocolateyPackage -packageName "discord"
+# So Chris isn't crippled
+Install-ChocolateyPackage -packageName "vim"
 
 # Verify the installations
 Write-Output "Visual Studio Code version:"
