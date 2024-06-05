@@ -20,13 +20,12 @@ function Install-ChocolateyPackage {
 Install-ChocolateyPackage -packageName "vscode"
 Install-ChocolateyPackage -packageName "git"
 Install-ChocolateyPackage -packageName "git.install"
-Install-ChocolateyPackage -packageName "git-credential-manager-core"
-
-# Install additional software
+Install-ChocolateyPackage -packageName "Git-Credential-Manager-for-Windows"
 Install-ChocolateyPackage -packageName "github-desktop"
 Install-ChocolateyPackage -packageName "python"
 Install-ChocolateyPackage -packageName "pipenv"
 Install-ChocolateyPackage -packageName "firefox"
+Install-ChocolateyPackage -packageName "discord"
 
 # Verify the installations
 Write-Output "Visual Studio Code version:";
@@ -85,4 +84,12 @@ if (Test-Path $firefoxPath) {
     & $firefoxPath -v | Select-String -Pattern "Mozilla Firefox";
 } else {
     Write-Output "Firefox is not installed.";
+}
+
+Write-Output "Discord version:";
+$discordPath = "C:\Users\$env:USERNAME\AppData\Local\Discord\app-*\Discord.exe"
+if (Test-Path $discordPath) {
+    & $discordPath --version;
+} else {
+    Write-Output "Discord is not installed.";
 }
