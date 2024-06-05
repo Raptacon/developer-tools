@@ -1,6 +1,6 @@
 # Define the GitHub repository and script URL
 $repoUrl = "https://raw.githubusercontent.com/Raptacon/developer-tools/main/install_dev_tools.ps1"
-$tempScriptPath = "C:\Temp\install_dev_tools.ps1"
+$tempScriptPath = "$HOME\Downloads\install_dev_tools.ps1"
 
 # Function to download the latest script from GitHub
 function Update-ScriptFromGitHub {
@@ -9,19 +9,30 @@ function Update-ScriptFromGitHub {
         [string]$tempScriptPath
     )
 
-    # Download the latest script
-    Invoke-WebRequest -Uri $repoUrl -OutFile $tempScriptPath
+    try {
+        # Download the latest script
+        Invoke-WebRequest -Uri $repoUrl -OutFile $tempScriptPath -ErrorAction Stop
+        Write-Output "Script downloaded successfully to $tempScriptPath."
 
-    # Replace the current script with the latest version
-    Copy-Item -Path $tempScriptPath -Destination $MyInvocation.MyCommand.Path -Force
+        # Replace the current script with the latest version
+        Copy-Item -Path $tempScriptPath -Destination $MyInvocation.MyCommand.Path -Force
+        Write-Output "Script updated successfully."
+
+        return $true
+    } catch {
+        Write-Error "Failed to download the script: $_"
+        return $false
+    }
 }
 
 # Update the script to the latest version from GitHub
-Update-ScriptFromGitHub -repoUrl $repoUrl -tempScriptPath $tempScriptPath
-
-# Re-run the script
-& $MyInvocation.MyCommand.Path
-
+if (Update-ScriptFromGitHub -repoUrl $repoUrl -tempScriptPath $tempScriptPath) {
+    # Re-run the script if update was successful
+    & $MyInvocation.MyCommand.Path
+} else {
+    Write-Error "Script update failed. Exiting."
+    exit 1
+}
 # Ensure Chocolatey is installed
 if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
     Set-ExecutionPolicy Bypass -Scope Process -Force;
