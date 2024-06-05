@@ -3,6 +3,16 @@ $repoUrl = "https://github.com/Raptacon/developer-tools.git"
 $localRepoPath = "$HOME\Downloads\developer-tools"
 $scriptPath = "$localRepoPath\install_dev_tools.ps1"
 
+# Function to check if Git is installed
+function Check-GitInstalled {
+    if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+        Write-Warning "Git is not installed. Skipping repository cloning and update checks."
+        return $false
+    } else {
+        return $true
+    }
+}
+
 # Function to clone the repository if it doesn't exist
 function Clone-RepoIfNotExists {
     param (
@@ -39,15 +49,30 @@ function Check-ForUpdates {
     }
 }
 
-# Clone the repository if it doesn't exist
-Clone-RepoIfNotExists -repoUrl $repoUrl -localRepoPath $localRepoPath
 
-# Check for updates
-if (Check-ForUpdates -localRepoPath $localRepoPath) {
-    exit 1
+# Check if Git is installed
+$gitInstalled = Check-GitInstalled
+
+if ($gitInstalled) {
+    # Clone the repository if it doesn't exist
+    Clone-RepoIfNotExists -repoUrl $repoUrl -localRepoPath $localRepoPath
+
+    # Ensure the script is running from the cloned repository
+    $currentDir = Get-Location
+    if ($currentDir -ne (Get-Item $localRepoPath).FullName) {
+        Write-Warning "The script is not running from the cloned repository at $localRepoPath."
+        $response = Read-Host "Do you want to proceed anyway? (yes/no)"
+        if ($response -ne "yes") {
+            Write-Output "Please navigate to $localRepoPath and re-run the script."
+            exit 1
+        }
+    }
+
+    # Check for updates
+    if (Check-ForUpdates -localRepoPath $localRepoPath) {
+        exit 1
+    }
 }
-
-
 
 # Ensure Chocolatey is installed
 if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
