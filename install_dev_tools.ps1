@@ -339,6 +339,20 @@ function Install-VSCodeExtensions {
     }
     
     Write-ColorOutput "`nVS Code extensions installation complete" "Green"
+    
+    # TODO: Raptacon3200 - Configure team code style/linting rules
+    # Suggested implementation:
+    # Create .vscode/settings.json in team repos with:
+    # {
+    #   "python.linting.enabled": true,
+    #   "python.linting.flake8Enabled": true,
+    #   "python.formatting.provider": "black",
+    #   "python.formatting.blackArgs": ["--line-length", "100"],
+    #   "editor.formatOnSave": true,
+    #   "[python]": {
+    #     "editor.defaultFormatter": "ms-python.black-formatter"
+    #   }
+    # }
 }
 
 # ============================================================================
