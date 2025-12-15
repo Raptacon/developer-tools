@@ -648,7 +648,7 @@ function Start-Installation {
     Write-ColorOutput "- Review .vscode/settings.json in team repos for code style rules" "White"
     
     Write-ColorOutput "`nThis script is idempotent - safe to run multiple times!" "Green"
-    Write-ColorOutput "Happy coding! 🤖" "Cyan"
+    Write-ColorOutput "Happy coding!" "Cyan"
 }
 
 # ============================================================================
