@@ -15,3 +15,7 @@ before you run the install script.
 Open an Admin powershell and copy and paste that code. 
 
 Then download the script in the repo and run it.
+
+### Linux
+
+### OSX
