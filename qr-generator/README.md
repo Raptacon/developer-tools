@@ -12,6 +12,29 @@ and mentor interest forms, safety quizzes. A plain `forms.gle` QR works but
 looks anonymous on a flyer or a table tent. A branded code is instantly
 recognizable as ours and still scans from a phone camera at arm's length.
 
+## Ready-made codes
+
+Print-ready codes live in [`codes/`](codes/), one per named Makefile target.
+Download a PNG straight from GitHub; no setup needed.
+
+| Code | Target | Links to |
+|------|--------|----------|
+| [Student sign-up](codes/new_returning_student_signup.png) | `student_signup` | Student sign-up form |
+| [Parent sign-up](codes/new_returning_parent_signup.png) | `parent_signup` | Parent sign-up form |
+| [Mentor/Volunteer sign-up](codes/new_returning_mentor_volunteer_signup.png) | `mentor_volunteer_signup` | Mentor/Volunteer sign-up form |
+| [Check in / out](codes/attendance_checkin_checkout.png) | `attendance_checkin_checkout` | Attendance check-in form |
+| [Interest form](codes/interested_in_joining.png) | `raptacon_interest_signup` | Interest form |
+| [Handbook](codes/raptacon_handbook.png) | `raptacon_handbook` | Raptacon Handbook (Google Doc) |
+| [Handbook acknowledgment](codes/handbook_acknowledgment.png) | `handbook_ack` | Handbook acknowledgment form |
+| [Team calendar](codes/team_calendar.png) | `team_calendar` | Team calendar page |
+| [Discord](codes/discord_signup.png) | `raptacon_discord_signup` | Discord invite |
+| [Payments](codes/raptacon_payments.png) | `raptacon_payments` | Boosters payment store |
+
+To change a link: edit its target's `--url` in the Makefile, run
+`make codes`, and commit the regenerated PNG. `make test` fails if a
+committed code doesn't match its Makefile URL, or if `codes/` has a PNG no
+target produces.
+
 ## Setup
 
 This is a [pipenv](https://pipenv.pypa.io/) project.

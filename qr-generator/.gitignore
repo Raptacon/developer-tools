@@ -2,6 +2,7 @@
 build/
 *.png
 !Raptacon_Logo.png
+!codes/*.png
 
 # Python / tooling
 __pycache__/

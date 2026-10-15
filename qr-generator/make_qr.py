@@ -156,6 +156,7 @@ def main():
     if caption:
         img = add_caption(img, caption)
 
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     img.convert('RGB').save(args.output)
     print(f'Saved: {args.output}')
 
