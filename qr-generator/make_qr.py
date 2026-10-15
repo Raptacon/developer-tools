@@ -89,13 +89,35 @@ def build_qr_with_logo(url: str, logo_path: Path) -> Image.Image:
     return qr_img
 
 
+# Bold-ish fonts to try, in order, before falling back to Pillow's built-in.
+# Covers Linux (DejaVu), macOS (Arial/Helvetica), and Windows (arialbd).
+_CAPTION_FONT_CANDIDATES = (
+    'DejaVuSans-Bold.ttf',
+    '/System/Library/Fonts/Supplemental/Arial Bold.ttf',
+    '/System/Library/Fonts/Helvetica.ttc',
+    'arialbd.ttf',
+    'Arial.ttf',
+)
+
+
+def _load_caption_font(font_size: int):
+    for name in _CAPTION_FONT_CANDIDATES:
+        try:
+            return ImageFont.truetype(name, font_size)
+        except OSError:
+            continue
+    # Pillow >= 10.1 lets load_default scale; older versions ignore the size
+    # and render ~10px, which is too small for print but still legible.
+    try:
+        return ImageFont.load_default(size=font_size)
+    except TypeError:
+        return ImageFont.load_default()
+
+
 def add_caption(img: Image.Image, caption: str) -> Image.Image:
     """Adds a bold caption below the QR on an expanded white canvas."""
     font_size = max(24, img.width // 18)
-    try:
-        font = ImageFont.truetype('DejaVuSans-Bold.ttf', font_size)
-    except OSError:
-        font = ImageFont.load_default()
+    font = _load_caption_font(font_size)
 
     draw_probe = ImageDraw.Draw(Image.new('RGBA', (1, 1)))
     bbox = draw_probe.textbbox((0, 0), caption, font=font)

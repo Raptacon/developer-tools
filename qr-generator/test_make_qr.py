@@ -52,6 +52,16 @@ def test_caption_expands_canvas_without_breaking_scan():
     assert decoded_payloads(captioned) == [TEST_URL]
 
 
+def test_caption_uses_a_real_scalable_font():
+    # Regression: on machines without DejaVu (stock macOS), the old fallback
+    # was load_default() -> ~10px text, unreadable in print. The caption band
+    # should scale with the QR width.
+    base = make_qr.build_qr_with_logo(TEST_URL, LOGO)
+    captioned = make_qr.add_caption(base, "Check In / Out")
+    band = captioned.height - base.height
+    assert band > base.width // 12
+
+
 def test_end_to_end_file_output(tmp_path, monkeypatch):
     out = tmp_path / "qr.png"
     monkeypatch.setattr(
