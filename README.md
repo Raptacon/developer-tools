@@ -22,5 +22,7 @@ Then download the script in the repo and run it.
 
 ## Tools
 
-- [`qr-generator/`](qr-generator/) — generates branded Raptacon 3200 QR codes
-  (logo-in-center) for check-in / sign-up forms and other links.
+- [`qr-generator/`](qr-generator/README.md) — generates branded Raptacon 3200 QR
+  codes (logo-in-center) for check-in / sign-up forms and other links.
+  - [Ready-made codes](qr-generator/README.md#ready-made-codes): print-ready
+    PNGs for every team form and link, in [`qr-generator/codes/`](qr-generator/codes/).
