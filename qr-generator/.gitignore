@@ -1,0 +1,11 @@
+# Generated QR output
+build/
+*.png
+!Raptacon_Logo.png
+!codes/*.png
+
+# Python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/

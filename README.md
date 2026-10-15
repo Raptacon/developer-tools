@@ -19,3 +19,8 @@ Then download the script in the repo and run it.
 ### Linux
 
 ### OSX
+
+## Tools
+
+- [`qr-generator/`](qr-generator/) — generates branded Raptacon 3200 QR codes
+  (logo-in-center) for check-in / sign-up forms and other links.
