@@ -18,7 +18,7 @@ CODES = HERE / "codes"
 
 TARGET = re.compile(
     # One target's recipe: no blank line between its --url and --output.
-    r'--url "(?P<url>https?://[^"]+)"(?:(?!\n\n).)*?--output "\$\(CODES\)/(?P<png>[^"]+)"',
+    r'--url "(?P<url>(?:https?://|sms:)[^"]+)"(?:(?!\n\n).)*?--output "\$\(CODES\)/(?P<png>[^"]+)"',
     re.S,
 )
 
@@ -29,7 +29,7 @@ def named_codes():
 
 
 def test_makefile_has_named_codes():
-    assert len(named_codes()) >= 10
+    assert len(named_codes()) >= 11
 
 
 @pytest.mark.parametrize("png,url", sorted(named_codes().items()))
