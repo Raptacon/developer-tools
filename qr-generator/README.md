@@ -28,7 +28,8 @@ Download a PNG straight from GitHub; no setup needed.
 | [Handbook acknowledgment](codes/handbook_acknowledgment.png) | `handbook_ack` | Handbook acknowledgment form |
 | [Team calendar](codes/team_calendar.png) | `team_calendar` | Team calendar page |
 | [Discord](codes/discord_signup.png) | `raptacon_discord_signup` | Discord invite |
-| [Payments](codes/raptacon_payments.png) | `raptacon_payments` | Boosters payment store |
+| [Remind](codes/remind_signup.png) | `remind_signup` | Texts @3200rapta to 81010 (Remind sign-up) |
+| [Payments](codes/raptacon_payments.png) | `raptacon_payments` | Boosters payment store (pay.raptacon.org) |
 
 To change a link: edit its target's `--url` in the Makefile, run
 `make codes`, and commit the regenerated PNG. `make test` fails if a
