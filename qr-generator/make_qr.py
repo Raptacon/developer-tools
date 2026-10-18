@@ -116,12 +116,18 @@ def _load_caption_font(font_size: int):
 
 def add_caption(img: Image.Image, caption: str) -> Image.Image:
     """Adds a bold caption below the QR on an expanded white canvas."""
+    # Start at a size that scales with the QR, then shrink until the caption
+    # fits inside the image with a small side margin.
+    max_text_w = int(img.width * 0.92)
     font_size = max(24, img.width // 18)
-    font = _load_caption_font(font_size)
-
     draw_probe = ImageDraw.Draw(Image.new('RGBA', (1, 1)))
-    bbox = draw_probe.textbbox((0, 0), caption, font=font)
-    text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    while True:
+        font = _load_caption_font(font_size)
+        bbox = draw_probe.textbbox((0, 0), caption, font=font)
+        text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        if text_w <= max_text_w or font_size <= 10:
+            break
+        font_size -= 1
 
     padding = font_size
     canvas = Image.new('RGBA', (img.width, img.height + text_h + padding * 2), 'white')

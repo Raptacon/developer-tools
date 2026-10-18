@@ -62,6 +62,19 @@ def test_caption_uses_a_real_scalable_font():
     assert band > base.width // 12
 
 
+def test_long_caption_fits_inside_the_image():
+    # A short payload gives a small QR; a long caption must shrink to fit
+    # rather than run off both edges.
+    base = make_qr.build_qr_with_logo("sms:81010?&body=@3200rapta", LOGO)
+    caption = "Remind: text @3200rapta to 81010"
+    captioned = make_qr.add_caption(base, caption)
+    band = captioned.crop((0, base.height, captioned.width, captioned.height)).convert("L")
+    dark_cols = [x for x in range(band.width) if any(band.getpixel((x, y)) < 128 for y in range(band.height))]
+    assert dark_cols, "caption should be drawn"
+    margin = band.width * 0.02
+    assert min(dark_cols) > margin and max(dark_cols) < band.width - margin
+
+
 def test_end_to_end_file_output(tmp_path, monkeypatch):
     out = tmp_path / "qr.png"
     monkeypatch.setattr(
