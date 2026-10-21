@@ -23,6 +23,7 @@ Download a PNG straight from GitHub; no setup needed.
 | [Parent sign-up](codes/new_returning_parent_signup.png) | `parent_signup` | Parent sign-up form |
 | [Mentor/Volunteer sign-up](codes/new_returning_mentor_volunteer_signup.png) | `mentor_volunteer_signup` | Mentor/Volunteer sign-up form |
 | [Check in / out](codes/attendance_checkin_checkout.png) | `attendance_checkin_checkout` | Attendance check-in form |
+| [GitHub & Discord usernames](codes/team_accounts.png) | `team_accounts` | Team accounts form (add GitHub/Discord usernames) |
 | [Interest form](codes/interested_in_joining.png) | `raptacon_interest_signup` | Interest form |
 | [Handbook](codes/raptacon_handbook.png) | `raptacon_handbook` | Raptacon Handbook (Google Doc) |
 | [Handbook acknowledgment](codes/handbook_acknowledgment.png) | `handbook_ack` | Handbook acknowledgment form |

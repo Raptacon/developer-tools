@@ -11,6 +11,7 @@ To change a link, see [Ready-made codes](../README.md#ready-made-codes).
 | Parent sign-up | [<img src="new_returning_parent_signup.png" width="160" alt="Parent sign-up QR code">](new_returning_parent_signup.png) | `parent_signup` |
 | Mentor/Volunteer sign-up | [<img src="new_returning_mentor_volunteer_signup.png" width="160" alt="Mentor/Volunteer sign-up QR code">](new_returning_mentor_volunteer_signup.png) | `mentor_volunteer_signup` |
 | Check in / out | [<img src="attendance_checkin_checkout.png" width="160" alt="Check in / out QR code">](attendance_checkin_checkout.png) | `attendance_checkin_checkout` |
+| GitHub & Discord usernames | [<img src="team_accounts.png" width="160" alt="GitHub and Discord usernames QR code">](team_accounts.png) | `team_accounts` |
 | Interest form | [<img src="interested_in_joining.png" width="160" alt="Interest form QR code">](interested_in_joining.png) | `raptacon_interest_signup` |
 | Handbook | [<img src="raptacon_handbook.png" width="160" alt="Handbook QR code">](raptacon_handbook.png) | `raptacon_handbook` |
 | Handbook acknowledgment | [<img src="handbook_acknowledgment.png" width="160" alt="Handbook acknowledgment QR code">](handbook_acknowledgment.png) | `handbook_ack` |
