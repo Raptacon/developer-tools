@@ -19,7 +19,7 @@ OUTPUT ?= build/raptacon_qr.png
 
 # Committed, ready-to-print QR codes (one per named target below).
 CODES  ?= codes
-NAMED_CODES = student_signup parent_signup mentor_volunteer_signup attendance_checkin_checkout raptacon_handbook handbook_ack team_accounts raptacon_interest_signup team_calendar raptacon_discord_signup remind_signup raptacon_payments
+NAMED_CODES = student_signup parent_signup mentor_volunteer_signup attendance_checkin_checkout raptacon_handbook handbook_ack team_accounts roster_viewer raptacon_interest_signup team_calendar raptacon_discord_signup remind_signup raptacon_payments
 
 .PHONY: help install qr test example codes clean distclean $(NAMED_CODES)
 
@@ -87,6 +87,12 @@ team_accounts:
 		--url "https://docs.google.com/forms/d/e/1FAIpQLSfbgTqq8310WJhtd6AaM9yaciXO7t5bru1iqGk3CiHBR7dp9Q/viewform" \
 	  --caption "GitHub & Discord usernames" \
 	  --logo "$(LOGO)" --output "$(CODES)/team_accounts.png"
+
+roster_viewer:
+	$(RUN) python make_qr.py \
+		--url "https://script.google.com/macros/s/AKfycbxsny3ncBXMKrjQaW6Ot_2K54UDa5OtWN5KCxcQqdCj_nq8HiO9Eszm0tAr07fRlLZt-Q/exec" \
+	  --caption "Roster viewer (mentors)" \
+	  --logo "$(LOGO)" --output "$(CODES)/roster_viewer.png"
 
 raptacon_interest_signup:
 	$(RUN) python make_qr.py \
