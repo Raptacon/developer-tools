@@ -24,6 +24,7 @@ Download a PNG straight from GitHub; no setup needed.
 | [Mentor/Volunteer sign-up](codes/new_returning_mentor_volunteer_signup.png) | `mentor_volunteer_signup` | Mentor/Volunteer sign-up form |
 | [Check in / out](codes/attendance_checkin_checkout.png) | `attendance_checkin_checkout` | Attendance check-in form |
 | [GitHub & Discord usernames](codes/team_accounts.png) | `team_accounts` | Team accounts form (add GitHub/Discord usernames) |
+| [Skill sign-off](codes/skill_signoff.png) | `skill_signoff` | Skill sign-off form (leads and mentors record skill-tree sign-offs) |
 | [Roster viewer (mentors)](codes/roster_viewer.png) | `roster_viewer` | Read-only roster viewer; opens only for people with Master Roster access |
 | [Interest form](codes/interested_in_joining.png) | `raptacon_interest_signup` | Interest form |
 | [Handbook](codes/raptacon_handbook.png) | `raptacon_handbook` | Raptacon Handbook (Google Doc) |
