@@ -13,6 +13,7 @@ To change a link, see [Ready-made codes](../README.md#ready-made-codes).
 | Check in / out | [<img src="attendance_checkin_checkout.png" width="160" alt="Check in / out QR code">](attendance_checkin_checkout.png) | `attendance_checkin_checkout` |
 | GitHub & Discord usernames | [<img src="team_accounts.png" width="160" alt="GitHub and Discord usernames QR code">](team_accounts.png) | `team_accounts` |
 | Skill sign-off | [<img src="skill_signoff.png" width="160" alt="Skill sign-off QR code">](skill_signoff.png) | `skill_signoff` |
+| Record a payment | [<img src="record_payment.png" width="160" alt="Record a payment QR code">](record_payment.png) | `record_payment` |
 | Roster viewer (mentors) | [<img src="roster_viewer.png" width="160" alt="Roster viewer QR code">](roster_viewer.png) | `roster_viewer` |
 | Interest form | [<img src="interested_in_joining.png" width="160" alt="Interest form QR code">](interested_in_joining.png) | `raptacon_interest_signup` |
 | Handbook | [<img src="raptacon_handbook.png" width="160" alt="Handbook QR code">](raptacon_handbook.png) | `raptacon_handbook` |
